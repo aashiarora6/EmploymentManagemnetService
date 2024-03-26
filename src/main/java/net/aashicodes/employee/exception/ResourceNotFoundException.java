@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException{
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
     private String resourceName;
     private String fieldName;
     private String fieldValue;
@@ -34,10 +34,10 @@ public class ResourceNotFoundException extends RuntimeException{
         this.fieldValue = fieldValue;
     }
 
-    public ResourceNotFoundException(String resourceName, String fieldName, String fieldValue) {
-        super(String.format("%s not found with %s : '%s'", resourceName, fieldName, fieldValue));
+    public ResourceNotFoundException(String resourceName, String fieldName, long serialVersionUID) {
+        super(String.format("%s not found with %s : '%s'", resourceName, fieldName, serialVersionUID));
         this.resourceName = resourceName;
         this.fieldName = fieldName;
-        this.fieldValue = fieldValue;
+        this.serialVersionUID = serialVersionUID;
     }
 }
