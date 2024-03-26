@@ -22,9 +22,8 @@ public class EmployeeController {
 
     //Build Create employee Rest API
     @PostMapping()
+    //WE need to always add @requestBody annotation to map the body with the Posted content in the URL
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
-        System.out.println("Inside POST");
-        System.out.println(employee);
         return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
 
@@ -40,4 +39,12 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long id){
         return new ResponseEntity<Employee>(employeeService.getEmployeeById(id), HttpStatus.OK);
     }
+
+    //Build Update the employees the REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id,
+                                                   @RequestBody Employee employee){
+        return new ResponseEntity<Employee>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
+    }
+
 }
